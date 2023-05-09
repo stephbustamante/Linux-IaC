@@ -1,12 +1,17 @@
 #!/bin/bash
 
-echo "Configurando ambiente..."
+echo "Configurando Ambiente..."
+echo "Criando diretórios..."
 
 mkdir /publico /adm /ven /sec
+
+echo "Criando grupos de usuários..."
 
 groupadd GRP_ADM
 groupadd GRP_VEN
 groupadd GRP_SEC
+
+echo "Configurando permissões..."
 
 chown root:GRP_ADM /adm/
 chown root:GRP_VEN /ven/
@@ -16,6 +21,8 @@ chmod 777 /publico/
 chmod 770 /adm/
 chmod 770 /ven/
 chmod 770 /sec/
+
+echo "Criando usuários..."
 
 useradd carlos -c "Carlos Antônio" -m -s /bin/bash -p $(openssl passwd -6 123456) -G GRP_ADM
 passwd carlos -e
